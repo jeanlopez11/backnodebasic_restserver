@@ -6,7 +6,7 @@ class Server {
     constructor() {
         //this hace referencia atributos que solo funcionan dentro del constructor
         this.app  = express();
-        this.port =process.env.PORT;
+        this.port =process.env.PORT || 3000;
         //Middelwares
         this.middlewares();
         this.usuariosPath = '/api/usuarios';
