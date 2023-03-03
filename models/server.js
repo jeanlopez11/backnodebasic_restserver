@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('../database/config');
 class Server {
 
     
@@ -7,6 +8,9 @@ class Server {
         //this hace referencia atributos que solo funcionan dentro del constructor
         this.app  = express();
         this.port =process.env.PORT;
+
+        //Conectar a base de datos
+        this.conectarDB();
         //Middelwares
         this.middlewares();
         this.usuariosPath = '/api/usuarios';
@@ -30,6 +34,10 @@ class Server {
         this.app.use(express.json());
         //Registrando directorio publico
         this.app.use(express.static('public'));
+    }
+
+    async conectarDB(){
+        await dbConnection();
     }
 }
 
